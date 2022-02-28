@@ -10,12 +10,12 @@ import {
 } from 'mdb-react-ui-kit';
 import HomepageNavbar from './HomepageNavbar';
 
-export default function SighUp() {
+export default function AdminSighUp() {
     return (
         <Container fluid >
             <HomepageNavbar />
             <Container>
-                <h1>Sign Up Here!!</h1>
+                <h1>Admin Sign Up Here!!</h1>
                 <Container style={{paddingTop:20,paddingBottom:50}}>
                     <form>
                         <MDBInput className='mb-4' type='email' id='form2Example1' label='Email address' />

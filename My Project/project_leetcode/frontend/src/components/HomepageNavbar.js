@@ -1,6 +1,8 @@
 import React from 'react'
-import { Routes, Route, Link } from "react-router-dom";
-import { Navbar, Container, Nav, Row, Col,Button } from 'react-bootstrap';
+import {  Link } from "react-router-dom";
+import { Navbar, Container, Nav, Row, Col, Button } from 'react-bootstrap';
+import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
+
 function HomepageNavbar() {
     return (
         <div><Navbar bg="light" variant="dark">
@@ -15,18 +17,27 @@ function HomepageNavbar() {
                     />
                 </Navbar.Brand></Link>
 
-                <Nav className="container-fluid">
-                    <Nav.Item className="ms-auto">
-                        <Row>
-                            <Link to="/SignUp"> <Button variant="dark">Login</Button></Link>
-                        </Row>
-                    </Nav.Item>
-
+                <Nav className="container-fluid" className="d-flex justify-content-end" >
+                    <div style={{paddingRight:5}}>
+                    <MDBDropdown group className="ml-3">
+                        <MDBDropdownToggle color='success'>Login</MDBDropdownToggle>
+                        <MDBDropdownMenu>
+                            <MDBDropdownItem>
+                               <Link to="/SignUp"> <MDBDropdownLink>Login As A Simple User</MDBDropdownLink></Link>
+                            </MDBDropdownItem>
+                            <MDBDropdownItem>
+                               <Link to="/adminsignup"> <MDBDropdownLink href="#">Login As An Admin</MDBDropdownLink></Link>
+                            </MDBDropdownItem>
+                        </MDBDropdownMenu>
+                    </MDBDropdown>
+                    </div>
+                   <div >
                     <Nav.Item className="ms-auto">
                         <Row>
                             <Link to="/CreateAccount"> <Button variant="dark">Register</Button></Link>
                         </Row>
                     </Nav.Item>
+                    </div>
                 </Nav>
             </Container>
         </Navbar></div>
