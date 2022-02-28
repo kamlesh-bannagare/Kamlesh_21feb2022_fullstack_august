@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Table } from 'react-bootstrap';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Routes, Route, Link } from "react-router-dom";
 
 function ShowProblem() {
 
@@ -51,7 +52,7 @@ function ShowProblem() {
                                     <tbody key={problem.index} >
                                         <tr>
                                             <td>{problem.index}</td>
-                                            <td>{problem.title}</td>
+                                            <Link to={`/showProblemDetails/${problem.index}`}><td>{problem.title}</td></Link>
                                             <td>{problem.status_id}</td>
                                             <td>{problem.acceptance}</td>
                                             <td>{problem.difficulty_id}</td>

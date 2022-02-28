@@ -65,6 +65,38 @@ def problem(request):
                 print("The SQLite connection is closed")
         
         return Response({"message": "data added successfully"})
+    
+@api_view(['GET', 'PUT','DELETE'])
+def problem_details(request,id): 
+    id=str(id)
+    if request.method == 'GET':
+        conn = sqlite3.connect('problem_sets.db')
+        cur = conn.cursor()
+        cur.execute("select rowid,* from problem where rowid=?",id)
+        get_problem_value = cur.fetchone()
+        print(type(get_problem_value))
+        get_problem_key = ('index', 'title', 'status_id','solution','acceptance','difficulty_id','frequency','description','example','constraint','user_id','tag_id','company','Featured_question')
+        if len(get_problem_value) == len(get_problem_key):
+            problem_res=dict(zip(get_problem_key,get_problem_value))
+            print(problem_res)
+            return Response(problem_res)
+            
+        
+        # print("get problem",type(get_problem))
+        
+        
+        # my_list = []
+        # for t in get_problem:
+        #     print("t",t)
+        #     my_list.append({'index': t[0], 'title': t[1], 'status_id': t[2],'solution': t[3],'acceptance':t[4],'difficulty_id':t[5],'frequency':t[6],'description':t[7],'example':t[8],'constraint':t[9],'user_id':t[10],'tag_id':t[11],'company':t[12],'Featured_question':t[13]})
+            
+        # return Response({"message": "THIS IS ALL ABOUT GET!", "data": my_list})
+        
+            
+        
+        
+       
+    
      
 
 
