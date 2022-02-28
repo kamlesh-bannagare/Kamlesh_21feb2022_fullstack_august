@@ -32,40 +32,40 @@ function ShowProblem() {
     return (
         <div>
             <Container fluid>
-                    
-                        <Table striped bordered hover responsive>
-                            <thead>
+
+                <Table striped bordered hover responsive>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>acceptance</th>
+                            <th>difficulty</th>
+                            <th>frequency</th>
+                            <th>tag</th>
+
+                        </tr>
+                    </thead>
+                    {problems.map((problem) => {
+                        console.log(problem)
+                        return (
+                            <tbody key={problem.index} >
                                 <tr>
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    <th>Status</th>
-                                    <th>acceptance</th>
-                                    <th>difficulty</th>
-                                    <th>frequency</th>
-                                    <th>tag</th>
-                                    <th>constraints</th>
+                                    <td>{problem.index}</td>
+                                    <Link to={`/showProblemDetails/${problem.index}`}><td>{problem.title}</td></Link>
+                                    <td>{problem.status_id}</td>
+                                    <td>{problem.acceptance}</td>
+                                    <td>{problem.difficulty_id}</td>
+                                    <td>{problem.frequency}</td>
+                                    <td>{problem.tag_id}</td>
+
                                 </tr>
-                            </thead>
-                            {problems.map((problem) => {
-                                console.log(problem)
-                                return (
-                                    <tbody key={problem.index} >
-                                        <tr>
-                                            <td>{problem.index}</td>
-                                            <Link to={`/showProblemDetails/${problem.index}`}><td>{problem.title}</td></Link>
-                                            <td>{problem.status_id}</td>
-                                            <td>{problem.acceptance}</td>
-                                            <td>{problem.difficulty_id}</td>
-                                            <td>{problem.frequency}</td>
-                                            <td>{problem.tag_id}</td>
-                                            <td>{problem.constraint}</td>
-                                        </tr>
-                                    </tbody>);
-                            })}
-                        </Table>
-                  
-                </Container>
-        
+                            </tbody>);
+                    })}
+                </Table>
+
+            </Container>
+
 
         </div>
     )

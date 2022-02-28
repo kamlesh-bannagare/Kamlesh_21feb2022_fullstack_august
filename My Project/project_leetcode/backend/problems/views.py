@@ -72,7 +72,7 @@ def problem_details(request,id):
     if request.method == 'GET':
         conn = sqlite3.connect('problem_sets.db')
         cur = conn.cursor()
-        cur.execute("select rowid,* from problem where rowid=?",id)
+        cur.execute("select rowid,* from problem where rowid=?",(id,))
         get_problem_value = cur.fetchone()
         print(type(get_problem_value))
         get_problem_key = ('index', 'title', 'status_id','solution','acceptance','difficulty_id','frequency','description','example','constraint','user_id','tag_id','company','Featured_question')
