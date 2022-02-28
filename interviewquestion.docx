@@ -1,0 +1,85 @@
+day1: Communication:
+1)Tell me about yourself in 2 sentences.
+2)Explain to your 95-year old grandmother what you do for a living.
+3)Use up to 5 sentences to sell me a pencil
+4)Your colleague is publicly belittling your work achievements. What do you do?
+5)Do you prefer written or verbal communication?
+6)Which one is more important to you and why: to be a good listener or a good communicator?
+
+day2: React Interview Questions
+1. What is React?
+2. What are the advantages of using React?
+3. What are the limitations of React?
+4. What is useState() in React?
+5. What are keys in React?
+6. What is JSX?
+7. What are the differences between functional and class components?
+8. What is the virtual DOM? How does react use the virtual DOM to render the UI?
+9. What are the differences between controlled and uncontrolled components?
+10. What are props in React?
+
+Day3: React Interview Questions
+11. Explain React state and props.
+12. Explain about types of side effects in React component.
+13. What is prop drilling in React?
+14. What are error boundaries?
+15. What is React Hooks?
+
+
+PYTHON INTERVIEW QUESTION
+
+1) Explain Python?
+Answer: Python is a highly comprehensive, interactive, and object-oriented scriptwriting language. It is specifically developed with the purpose of making the content highly readable among the net surfers. Python makes use of various English keywords other than just punctuations. It also has lesser syntactical constructions like in other languages.
+
+2) What are the distinct features of Python?
+Answer: The distinct features of Python include the following.
+
+Structured and functional programmings are supported.
+It can be compiled to byte-code for creating larger applications.
+Develops high-level dynamic data types.
+Supports checking of dynamic data types.
+Applies automated garbage collection.
+It could be used effectively along with Java, COBRA, C, C++, ActiveX, and COM
+
+3) What is Pythonpath?
+Answer: A Pythonpath tells the Python interpreter to locate the module files that can be imported into the program. It includes the Python source library directory and source code directory.
+
+4) Can we preset Pythonpath?
+Answer: Yes, we can preset Pythonpath as a Python installer.
+
+5) Why do we use Pythonstartup environment variable?
+Answer: We use the Pythonstartup environment variable because it consists of the path in which the initialization file carrying Python source code can be executed to start the interpreter. 
+
+6) What is the Pythoncaseok environment variable?
+Answer: Pythoncaseok environment variable is applied in Windows with the purpose to direct Python to find the first case insensitive match in an import statement.
+
+7) What are the supported standard data types in Python?
+Answer: The supported standard data types in Python include the following.
+
+List.
+Number.
+String.
+Dictionary.
+Tuples.
+
+8) Define tuples in Python?
+Answer: Tuples is a sequence data type in Python. The number of values in tuples are separated by commas.
+
+9) What is the major difference between tuples and lists in Python?
+
+10) What are the positive and negative indices?
+Answer:  In the positive indices are applied the search beings from left to the right. In the case of the negative indices, the search begins from right to left. For example, in the array list of size n the positive index, the first index is 0, then comes 1 and until the last index is n-1. However, in the negative index, the first index is -n, then -(n-1) until the last index will be -1.
+
+11) What can be the length of the identifier in Python?
+Answer: The length of the identifier in Python can be of any length. The longest identifier will violate from PEP – 8 and PEP – 20.(79 character)
+
+12) Define Pass statement in Python?
+Answer: A Pass statement in Python is used when we cannot decide what to do in our code, but we must type something for making syntactically correct.
+
+13) What are the limitations of Python?
+Answer: There are certain limitations of Python, which include the following:
+
+It has design restrictions.
+It is slower when compared with C and C++ or Java.
+It is inefficient in mobile computing.
+It consists of an underdeveloped database access layer.
