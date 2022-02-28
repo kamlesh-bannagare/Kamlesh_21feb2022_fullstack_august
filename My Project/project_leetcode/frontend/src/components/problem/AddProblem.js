@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Button, Container } from 'react-bootstrap';
 import HomepageNavbar from '../HomepageNavbar';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'
 
 function AddProblem() {
@@ -21,65 +21,44 @@ function AddProblem() {
         company: '',
         featured_question: '',
     }
-    console.log("problme object:", add_problem)
+
     const [problem, setNewProblem] = useState(add_problem)
-   
-    // useEffect(() => 
-    //     getProblems()
-    // }, [])
 
-    // function getProblems() {
-    //     axios({
-    //         method: "GET",
-    //         url: "/api/problem/"
-    //     }).then((response) => {
-    //         const data = response.data
 
-    //         setNewProblems(data)
-    //     }).catch((error) => {
-    //         if (error.response) {
-    //             console.log(error.response);
-    //             console.log(error.response.status);
-    //             console.log(error.response.headers)
-    //         }
-    //     })
-    // }
+    function createProblem(event) {
+        axios({
+            method: 'POST',
+            url: "/api/problem/",
+            data: {
+                title: problem.title,
+                status_id: problem.status,
+                solution: problem.solution,
+                acceptance: problem.acceptance,
+                difficulty_id: problem.difficulty,
+                frequency: problem.frequency,
+                description: problem.description,
+                example: problem.example,
+                constraint: problem.constraint,
+                user_id: problem.user_id,
+                tag_id: problem.tag,
+                company: problem.company,
+                Featured_question: problem.featured_question
+            }
+        })
 
-function createProblem(event){
-    axios({
-        method: 'POST',
-        url: "/api/problem/",
-        data:{
-            title: problem.title,
-            status_id:problem.status,
-            solution:problem.solution,
-            acceptance:problem.acceptance,
-            difficulty_id:problem.difficulty,
-            frequency: problem.frequency,
-            description:problem.description,
-            example:problem.example,
-            constraint:problem.constraint,
-            user_id:problem.user_id,
-            tag_id:problem.tag,
-            company: problem.company,
-            Featured_question:problem.featured_question
-        }
-    })
+        setNewProblem((add_problem))
 
-    setNewProblem((add_problem))
-
-    event.preventDefault()
-}
+        event.preventDefault()
+    }
 
     function handleChange(event) {
         const { value, name } = event.target
-        
+
         setNewProblem(prevProblem => ({
             ...prevProblem, [name]: value
         }))
     }
 
-    console.log("data endered:",problem)
     return (
         <div>
             <Container fluid>

@@ -16,7 +16,7 @@ def users_data(request):
         my_list = []
         index = 1
         for t in get_user:
-            my_list.append({'index': index, 'first_name': t[1], 'last_name': t[2],'email': t[3],'password':t[4]})
+            my_list.append({'index': index, 'first_name': t[0], 'last_name': t[1],'email':t[2],'password': t[3],'contact':t[4]})
             index += 1
         # return Response({"message": "THIS IS ALL ABOUT GET!", "data": my_list})
         return Response(my_list)
@@ -26,9 +26,10 @@ def users_data(request):
         new_data = request.data
        
         print(new_data)
-        user_id = new_data["user_id"]
+        
         first_name = new_data["first_name"]
         last_name = new_data["last_name"]
+        contact =new_data["contact"]
         email = new_data["email"]
         password = new_data["password"]
         
@@ -38,10 +39,10 @@ def users_data(request):
             print("Connected to SQLite")
 
             sqlite_insert_with_param = """INSERT INTO user
-                            (user_id,first_name,last_name,email,password) 
+                            (first_name,last_name,contact,email,password) 
                             VALUES (?, ?, ?,?,?);"""
 
-            data_tuple = (user_id,first_name,last_name,email,password)
+            data_tuple = (first_name,last_name,contact,email,password)
             cursor.execute(sqlite_insert_with_param, data_tuple)
             sqliteConnection.commit()
             print("Python Variables inserted successfully into SqliteDb_developers table")
