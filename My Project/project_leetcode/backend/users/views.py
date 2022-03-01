@@ -96,9 +96,48 @@ def users_update_delete(request,id):
     
     # ===================================== login =================================
 
-# @api_view(['POST'])  
-# def login(request):
-#     if request.method == 'POST':
+@api_view(['POST'])  
+def login(request):
+    if request.method == 'POST':
+        new_data = request.data
+       
+        print(new_data)
+        
+        email = new_data["email"]
+        password = new_data["password"]
+        
+        try:
+            sqliteConnection = sqlite3.connect('problem_sets.db')
+            cursor = sqliteConnection.cursor()
+            print("Connected to SQLite")
+
+            check_user = """SELECT first_name  FROM USER WHERE email=? AND password=?"""
+            print("print check:",check_user)
+            checked=cursor.execute(check_user,(email,password))
+            get_user = cursor.fetchone()
+           
+            print("get_user:",get_user)
+            
+            sqliteConnection.commit()
+            
+
+            cursor.close()
+            if get_user == None:
+                return Response({"login":False})
+            else:
+                return Response({"login":True})
+            
+
+        except sqlite3.Error as error:
+            print(error)
+            return Response({"message": "Failed to check Python variable into sqlite table" })
+        finally:
+            if (sqliteConnection):
+                sqliteConnection.close()
+                print("The SQLite connection is closed")
+        
+        return Response({"message": "checked"})
+    
           
     
     

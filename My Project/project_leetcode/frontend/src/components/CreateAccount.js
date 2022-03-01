@@ -3,6 +3,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import HomepageNavbar from './HomepageNavbar';
 import { useState } from 'react';
 import axios from 'axios'
+import {  Link } from "react-router-dom";
 import {
     MDBInput,
     MDBCol,
@@ -112,12 +113,12 @@ function CreateAccount() {
                             />
 
                             <MDBBtn onClick={createUser} type='submit' className='mb-4' block>
-                                Sign in
+                                Register
                             </MDBBtn>
 
                             <div className='text-center'>
                                 <p>
-                                    Not a member? <a href='#!'>Register</a>
+                                    Already Have An Account? <Link to='/SignUp'>Login</Link>
                                 </p>
                                 <p>or sign up with:</p>
 

@@ -1,5 +1,10 @@
 import React from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
+import {  Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import axios from 'axios'
+
+
 import {
     MDBInput,
     MDBCol,
@@ -11,15 +16,61 @@ import {
 import HomepageNavbar from './HomepageNavbar';
 
 export default function SighUp() {
+    const navigate=useNavigate()
+    const add_user = {
+        
+ 
+        email: '',
+        password: '',
+    }
+
+    const [user, setNewUser] = useState(add_user)
+
+    function loginUser(event) {
+        axios({
+            method: 'POST',
+            url: "/users/login/",
+            data: {
+                email: user.email,
+                password: user.password
+            }
+        }).then(res=>{
+            console.log(res.data)
+            if (res.data.login){
+                console.log("res",res.data.login)
+                navigate("/")
+            }
+        })
+
+        setNewUser((add_user))
+
+        event.preventDefault()
+    }
+
+    function handleChange(event) {
+        const { value, name } = event.target
+       console.log(name,value)
+        setNewUser(prevUser => ({
+            ...prevUser, [name]: value
+        }))
+    }
+
+
+
     return (
+
+
+        
+
+
         <Container fluid >
             <HomepageNavbar />
             <Container>
                 <h1>Sign Up Here!!</h1>
                 <Container style={{paddingTop:20,paddingBottom:50}}>
                     <form>
-                        <MDBInput className='mb-4' type='email' id='form2Example1' label='Email address' />
-                        <MDBInput className='mb-4' type='password' id='form2Example2' label='Password' />
+                        <MDBInput onChange={handleChange} name="email" value={user.email} className='mb-4' type='email' id='form2Example1' label='Email address' />
+                        <MDBInput onChange={handleChange} name="password" value={user.password} className='mb-4' type='password' id='form2Example2' label='Password' />
 
                         <MDBRow className='mb-4'>
                             <MDBCol className='d-flex justify-content-center'>
@@ -30,13 +81,13 @@ export default function SighUp() {
                             </MDBCol>
                         </MDBRow>
 
-                        <MDBBtn type='submit' className='mb-4' block>
+                        <MDBBtn onClick={loginUser} type='submit' className='mb-4' block>
                             Sign in
                         </MDBBtn>
 
                         <div className='text-center'>
                             <p>
-                                Not a member? <a href='#!'>Register</a>
+                                Not a member? <Link to='/CreateAccount'> Register </Link>
                             </p>
                             <p>or sign up with:</p>
 
