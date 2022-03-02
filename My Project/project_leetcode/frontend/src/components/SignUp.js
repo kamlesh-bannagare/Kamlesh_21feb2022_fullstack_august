@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import {  Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios'
 
@@ -16,15 +16,13 @@ import {
 import HomepageNavbar from './HomepageNavbar';
 
 export default function SighUp() {
-    const navigate=useNavigate()
-    const add_user = {
-        
- 
+    const navigate = useNavigate()
+    const login_details = {
         email: '',
         password: '',
     }
 
-    const [user, setNewUser] = useState(add_user)
+    const [user, setNewUser] = useState(login_details)
 
     function loginUser(event) {
         axios({
@@ -34,40 +32,34 @@ export default function SighUp() {
                 email: user.email,
                 password: user.password
             }
-        }).then(res=>{
+        }).then(res => {
             console.log(res.data)
-            if (res.data.login){
-                console.log("res",res.data.login)
-                navigate("/")
+            if (res.data.login) {
+                console.log("res", res.data.login)
+                navigate("/showProblem")
             }
         })
 
-        setNewUser((add_user))
+        setNewUser((login_details))
 
         event.preventDefault()
     }
 
     function handleChange(event) {
         const { value, name } = event.target
-       console.log(name,value)
+        console.log(name, value)
         setNewUser(prevUser => ({
             ...prevUser, [name]: value
         }))
     }
 
-
-
     return (
-
-
-        
-
 
         <Container fluid >
             <HomepageNavbar />
             <Container>
                 <h1>Sign Up Here!!</h1>
-                <Container style={{paddingTop:20,paddingBottom:50}}>
+                <Container style={{ paddingTop: 20, paddingBottom: 50 }}>
                     <form>
                         <MDBInput onChange={handleChange} name="email" value={user.email} className='mb-4' type='email' id='form2Example1' label='Email address' />
                         <MDBInput onChange={handleChange} name="password" value={user.password} className='mb-4' type='password' id='form2Example2' label='Password' />

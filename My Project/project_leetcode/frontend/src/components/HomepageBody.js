@@ -9,7 +9,7 @@ function HomepageBody() {
 
   
     return (
-        <div>
+        <div style={{paddingTop:50 , paddingBottom:50}}>
             <Card className="text-center">
                 {/* <Card.Header>Featured</Card.Header> */}
                 <Card.Body>
@@ -18,7 +18,7 @@ function HomepageBody() {
                     LeetCode is the best platform to help you enhance your skills, expand your knowledge and prepare for technical interviews.
                     </Card.Text>
 
-                    <Link to="/addProblem"> <Button variant="primary">Add Problem</Button></Link>
+                    <Link to="/CreateAccount"> <Button variant="primary">Create Account</Button></Link>
                 </Card.Body>
             </Card></div>
     )

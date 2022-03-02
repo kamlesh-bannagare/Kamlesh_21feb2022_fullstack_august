@@ -14,8 +14,6 @@ function Homepage() {
       <Container fluid>
         <HomepageNavbar />
         <HomepageBody />
-        <ShowProblem />
-       
       </Container>
 
     </div>
