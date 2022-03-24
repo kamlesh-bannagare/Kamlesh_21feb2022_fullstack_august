@@ -1,9 +1,9 @@
 import React from 'react'
-import { Form, Button, Container } from 'react-bootstrap';
+import {  Container } from 'react-bootstrap';
 import HomepageNavbar from './HomepageNavbar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'
-import {  Link } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import {
     MDBInput,
     MDBCol,
@@ -15,7 +15,7 @@ import {
 
 
 function CreateAccount() {
-
+    const navigate=useNavigate()
     const add_user = {
         first_name: '',
         last_name: '',
@@ -25,6 +25,15 @@ function CreateAccount() {
     }
 
     const [user, setNewUser] = useState(add_user)
+
+    useEffect(() => {
+    axios.get("/users/login").then((res)=>{
+        if(res.data.isLogin){
+            navigate("/showProblem")
+        }
+    })
+    }, [])
+
 
     function createUser(event) {
         axios({
@@ -37,6 +46,8 @@ function CreateAccount() {
                 email: user.email,
                 password: user.password
             }
+        }).then((res)=>{
+            navigate("/SignIn")
         })
 
         setNewUser((add_user))
@@ -118,7 +129,7 @@ function CreateAccount() {
 
                             <div className='text-center'>
                                 <p>
-                                    Already Have An Account? <Link to='/SignUp'>Login</Link>
+                                    Already Have An Account? <Link to='/SignIn'>Login</Link>
                                 </p>
                                 <p>or sign up with:</p>
 

@@ -1,10 +1,6 @@
 import React from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from 'react';
-import axios from 'axios'
-
-
+// import axios from 'axois'
 import {
     MDBInput,
     MDBCol,
@@ -15,54 +11,33 @@ import {
 } from 'mdb-react-ui-kit';
 import HomepageNavbar from './HomepageNavbar';
 
-export default function SighUp() {
-    const navigate = useNavigate()
-    const login_details = {
-        email: '',
-        password: '',
-    }
-
-    const [user, setNewUser] = useState(login_details)
-
-    function loginUser(event) {
-        axios({
-            method: 'POST',
-            url: "/users/login/",
-            data: {
-                email: user.email,
-                password: user.password
-            }
-        }).then(res => {
-            console.log(res.data)
-            if (res.data.login) {
-                console.log("res", res.data.login)
-                navigate("/showProblem")
-            }
-        })
-
-        setNewUser((login_details))
-
-        event.preventDefault()
-    }
-
-    function handleChange(event) {
-        const { value, name } = event.target
-        console.log(name, value)
-        setNewUser(prevUser => ({
-            ...prevUser, [name]: value
-        }))
-    }
-
+export default function AdminSighIn() {
+    // const login=(event)=>{
+    //     axios({
+    //         method: 'POST',
+    //         url: "/users/login/",
+    //         data: {
+    //             email: user.email,
+    //             password: user.password
+    //         }
+    //     }).then(res => {
+    //         console.log(res.data)
+    //         if (res.data.isLogin==true) {
+    //             console.log("res", res.data.login)
+    //             navigate("/showProblem")
+    //         }
+    //     })
+    //     event.preventDefault()
+    // }
     return (
-
         <Container fluid >
             <HomepageNavbar />
             <Container>
-                <h1>Sign Up Here!!</h1>
-                <Container style={{ paddingTop: 20, paddingBottom: 50 }}>
+                <h1>Admin Login!!</h1>
+                <Container style={{paddingTop:20,paddingBottom:50}}>
                     <form>
-                        <MDBInput onChange={handleChange} name="email" value={user.email} className='mb-4' type='email' id='form2Example1' label='Email address' />
-                        <MDBInput onChange={handleChange} name="password" value={user.password} className='mb-4' type='password' id='form2Example2' label='Password' />
+                        <MDBInput className='mb-4' type='email' id='form2Example1' label='Email address' />
+                        <MDBInput className='mb-4' type='password' id='form2Example2' label='Password' />
 
                         <MDBRow className='mb-4'>
                             <MDBCol className='d-flex justify-content-center'>
@@ -73,14 +48,12 @@ export default function SighUp() {
                             </MDBCol>
                         </MDBRow>
 
-                        <MDBBtn onClick={loginUser} type='submit' className='mb-4' block>
+                        <MDBBtn type='submit' className='mb-4' block>
                             Sign in
                         </MDBBtn>
 
                         <div className='text-center'>
-                            <p>
-                                Not a member? <Link to='/CreateAccount'> Register </Link>
-                            </p>
+                            
                             <p>or sign up with:</p>
 
                             <MDBBtn floating className='mx-1'>

@@ -9,6 +9,11 @@ from django.db import connections
 @api_view(['GET', 'POST'])
 def problem(request):
     if request.method == 'GET':
+        try:
+            request.session["userid"]
+        except KeyError:
+            # print("<,,,,,lkdsak")
+            return Response(data={"isLogin":False})  
         conn = sqlite3.connect('problem_sets.db')
         cur = conn.cursor()
         cur.execute("select * from problem")
@@ -19,7 +24,7 @@ def problem(request):
             my_list.append({'index': index, 'title': t[0], 'status_id': t[1],'solution': t[2],'acceptance':t[3],'difficulty_id':t[4],'frequency':t[5],'description':t[6],'example':t[7],'constraint':t[8],'user_id':t[9],'tag_id':t[10],'company':t[11],'Featured_question':t[12]})
             index += 1
         # return Response({"message": "THIS IS ALL ABOUT GET!", "data": my_list})
-        return Response(my_list)
+        return Response(data={"isLogin":True,"data":my_list})
     
     elif request.method == 'POST':
         

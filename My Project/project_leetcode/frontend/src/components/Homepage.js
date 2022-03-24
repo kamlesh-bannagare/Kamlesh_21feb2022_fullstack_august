@@ -4,9 +4,6 @@ import Footer from './Footer';
 
 import HomepageBody from './HomepageBody';
 import HomepageNavbar from './HomepageNavbar';
-import AddProblem from './problem/AddProblem';
-import ShowProblem from './problem/ShowProblem';
-
 
 function Homepage() {
   return (

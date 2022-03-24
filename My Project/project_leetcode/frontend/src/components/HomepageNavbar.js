@@ -1,9 +1,18 @@
 import React from 'react'
-import {  Link } from "react-router-dom";
+// import {  Link } from "react-router-dom";
 import { Navbar, Container, Nav, Row, Col, Button } from 'react-bootstrap';
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios'
 
-function HomepageNavbar() {
+function HomepageNavbar(props) {
+const navigate=useNavigate()
+const logout=()=>{
+axios.get("/users/logout").then((res)=>{
+    navigate("/SignIn")
+})
+}
+
     return (
         <div><Navbar bg="light" variant="dark">
             <Container>
@@ -17,28 +26,32 @@ function HomepageNavbar() {
                     />
                 </Navbar.Brand></Link>
 
-                <Nav className="container-fluid" className="d-flex justify-content-end" >
-                    <div style={{paddingRight:5}}>
-                    <MDBDropdown group className="ml-3">
-                        <MDBDropdownToggle color='success'>Login</MDBDropdownToggle>
-                        <MDBDropdownMenu>
-                            <MDBDropdownItem>
-                               <Link to="/SignUp"> <MDBDropdownLink>Login As A Simple User</MDBDropdownLink></Link>
-                            </MDBDropdownItem>
-                            <MDBDropdownItem>
-                               <Link to="/adminsignup"> <MDBDropdownLink href="#">Login As An Admin</MDBDropdownLink></Link>
-                            </MDBDropdownItem>
-                        </MDBDropdownMenu>
-                    </MDBDropdown>
-                    </div>
-                   <div >
-                    <Nav.Item className="ms-auto">
-                        <Row>
-                            <Link to="/CreateAccount"> <Button variant="dark">Register</Button></Link>
-                        </Row>
-                    </Nav.Item>
-                    </div>
-                </Nav>
+               {
+                   props.canLogout?
+                   <Button onClick={logout}>Logout</Button>:
+                   <Nav className="container-fluid d-flex justify-content-end" >
+                   <div style={{paddingRight:5}}>
+                   <MDBDropdown group className="ml-3">
+                       <MDBDropdownToggle color='success'>Login</MDBDropdownToggle>
+                       <MDBDropdownMenu>
+                           <MDBDropdownItem>
+                              <Link to="/SignIn"> <MDBDropdownLink>Login As A Simple User</MDBDropdownLink></Link>
+                           </MDBDropdownItem>
+                           <MDBDropdownItem>
+                              <Link to="/adminsignin"> <MDBDropdownLink>Login As An Admin</MDBDropdownLink></Link>
+                           </MDBDropdownItem>
+                       </MDBDropdownMenu>
+                   </MDBDropdown>
+                   </div>
+                  <div >
+                   <Nav.Item className="ms-auto">
+                       <Row>
+                           <Link to="/CreateAccount"> <Button variant="dark">Register</Button></Link>
+                       </Row>
+                   </Nav.Item>
+                   </div>
+               </Nav>
+               }
             </Container>
         </Navbar></div>
     )

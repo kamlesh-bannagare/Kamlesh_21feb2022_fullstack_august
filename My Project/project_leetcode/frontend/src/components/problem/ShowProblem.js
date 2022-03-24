@@ -2,12 +2,14 @@ import React from 'react'
 import { Container, Table } from 'react-bootstrap';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link ,useNavigate} from "react-router-dom";
+import HomepageNavbar from '../HomepageNavbar'
 
 function ShowProblem() {
+    const [logout ,setLogout]=useState(false)
 
     const [problems, setNewProblems] = useState([])
-
+    const navigate=useNavigate()
     useEffect(() => {
         getProblems()
     }, [])
@@ -17,9 +19,18 @@ function ShowProblem() {
             method: "GET",
             url: "/api/problem/"
         }).then((response) => {
-            const data = response.data
+            console.log(response.data)
+            // const data = response.data
+            if (response.data.isLogin==true){
+                setLogout(response.data.isLogin)
+                // const data = response.data
+                setNewProblems(response.data.data)
+            }
+            else{
+                navigate("/SignIn")
+            }
 
-            setNewProblems(data)
+           
         }).catch((error) => {
             if (error.response) {
                 console.log(error.response);
@@ -31,8 +42,9 @@ function ShowProblem() {
 
     return (
         <div>
+            <HomepageNavbar canLogout={logout} />
             <Container fluid>
-
+              
                 <Table striped bordered hover responsive>
                     <thead>
                         <tr>
