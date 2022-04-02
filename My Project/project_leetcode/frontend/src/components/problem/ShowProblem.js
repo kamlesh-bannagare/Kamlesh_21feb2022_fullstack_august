@@ -1,15 +1,23 @@
 import React from 'react'
 import { Container, Table } from 'react-bootstrap';
+
+import {
+    MDBContainer,
+    MDBNavbar,
+    MDBBtn
+} from 'mdb-react-ui-kit';
+
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Routes, Route, Link ,useNavigate} from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import HomepageNavbar from '../HomepageNavbar'
 
 function ShowProblem() {
-    const [logout ,setLogout]=useState(false)
+    const [logout, setLogout] = useState(false)
 
     const [problems, setNewProblems] = useState([])
-    const navigate=useNavigate()
+    const [tempProblem, setTempProblem] = useState([])
+    const navigate = useNavigate()
     useEffect(() => {
         getProblems()
     }, [])
@@ -21,16 +29,17 @@ function ShowProblem() {
         }).then((response) => {
             console.log(response.data)
             // const data = response.data
-            if (response.data.isLogin==true){
+            if (response.data.isLogin == true) {
                 setLogout(response.data.isLogin)
                 // const data = response.data
                 setNewProblems(response.data.data)
+                setTempProblem(response.data.data)
             }
-            else{
+            else {
                 navigate("/SignIn")
             }
 
-           
+
         }).catch((error) => {
             if (error.response) {
                 console.log(error.response);
@@ -40,11 +49,35 @@ function ShowProblem() {
         })
     }
 
+const searchHandler=(e)=>{
+ 
+    if (e.target.value){
+        const filtered=problems.filter((element)=> element.title.toLowerCase().includes(e.target.value.toLowerCase()))
+      
+        setTempProblem(filtered)
+    }
+    else{
+        setTempProblem(problems)
+    }
+}
+
     return (
         <div>
             <HomepageNavbar canLogout={logout} />
             <Container fluid>
-              
+
+                
+                    <MDBContainer fluid>
+                    <div class="p-3 col-example">
+                        <form className='d-flex input-group w-auto'>
+                            <input type='search' className='form-control' placeholder='Search Problem' aria-label='Search' onChange={searchHandler} />
+                            {/* <MDBBtn color='primary'>Search</MDBBtn> */}
+                        </form>
+                        </div>
+                    </MDBContainer>
+               
+
+
                 <Table striped bordered hover responsive>
                     <thead>
                         <tr>
@@ -58,7 +91,7 @@ function ShowProblem() {
 
                         </tr>
                     </thead>
-                    {problems.map((problem) => {
+                    {tempProblem.map((problem) => {
                         console.log(problem)
                         return (
                             <tbody key={problem.index} >
